@@ -1,5 +1,3 @@
-package org.dhbw.mosbach.ai.service;
-
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 

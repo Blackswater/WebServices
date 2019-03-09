@@ -1,5 +1,3 @@
-package org.dhbw.mosbach.ai.service;
-
 import javax.jws.WebService;
 
 // see http://cxf.apache.org/docs/developing-a-service.html
