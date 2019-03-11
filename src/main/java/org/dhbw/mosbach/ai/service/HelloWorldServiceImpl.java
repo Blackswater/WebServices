@@ -1,4 +1,4 @@
-package service;
+package org.dhbw.mosbach.ai.service;
 
 import javax.jws.WebService;
 
