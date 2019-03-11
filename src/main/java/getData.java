@@ -18,8 +18,7 @@ public class getData {
                 case 0:
                     builder.append(baseUriMeal);
                     break;
-                case 1:
-                    builder.append(baseUriCocktail);
+                case 1:                    builder.append(baseUriCocktail);
                     break;
             }
             builder.append(food);
