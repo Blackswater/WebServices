@@ -30,7 +30,7 @@ public class getData {
             }
             JSONObject jsonObj = readJsonFromUrl(listStubsUri);
             JSONArray part = jsonObj.getJSONArray("meals");
-            String out = part.getJSONObject(0).get("strIngredient10").toString();
+            String out = part.getJSONObject(0).toString();
             System.out.println(out);
         } catch (IOException e) {
             // Fehler behandeln
