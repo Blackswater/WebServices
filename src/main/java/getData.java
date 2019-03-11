@@ -1,39 +1,61 @@
-import org.apache.commons.io.IOUtils;
-import org.apache.http.*;
-import org.apache.http.client.*;
-import org.apache.http.client.methods.*;
-import org.apache.http.impl.client.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 public class getData {
-    public void getData(String food) {
-        String baseUri = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+    public void getDataFromAPI(int apiID,String food) {
+        String baseUriMeal = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+        String baseUriCocktail = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+        ArrayList<String> ingredients = new ArrayList<>();
+        ArrayList<String> measurements = new ArrayList<>();
         try {
-            HttpClient client = HttpClients.createDefault();
             StringBuilder builder = new StringBuilder();
-            builder.append(baseUri);
-            builder.append(food);
-            String listStubsUri = builder.toString();
-            HttpGet getStubMethod = new HttpGet(listStubsUri);
-            HttpResponse getStubResponse = client.execute(getStubMethod);
-            int getStubStatusCode = getStubResponse.getStatusLine().getStatusCode();
-            if (getStubStatusCode < 200 || getStubStatusCode >= 300) {
-                // Statuscode ungleich 2xx behandeln
-                return;
+            switch (apiID){
+                case 0:
+                    builder.append(baseUriMeal);
+                    break;
+                case 1:
+                    builder.append(baseUriCocktail);
+                    break;
             }
-            JSONObject jsonObj = readJsonFromUrl(listStubsUri);
-            JSONArray part = jsonObj.getJSONArray("meals");
-            String out = part.getJSONObject(0).get("strIngredient10").toString();
-            System.out.println(out);
+            builder.append(food);
+            String apiUri = builder.toString();
+            JSONObject jsonObj = readJsonFromUrl(apiUri);
+            JSONArray part = new JSONArray();
+            switch (apiID){
+                case 0:
+                    part = jsonObj.getJSONArray("meals");
+                    break;
+                case 1:
+                    part = jsonObj.getJSONArray("drinks");
+                    break;
+            }
+            int number=1;
+            while(true){
+                try{//Try catch notwendig, da eine JSONException ausgelöst wird wenn kein Element mehr gefunden werden kann
+                    String ingredientID= "strIngredient"+number;
+                    String ingredient = part.getJSONObject(0).get(ingredientID).toString();
+                    if(!ingredient.equals("")) {
+                        ingredients.add(ingredient);
+                        String measurementID= "strMeasure"+number;
+                        String measurement = part.getJSONObject(0).get(measurementID).toString();
+                        measurements.add(measurement);
+                    }
+                    number++;
+                }
+                catch (JSONException e){
+                    break;
+                }
+            }
         } catch (IOException e) {
             // Fehler behandeln
             System.out.println(e);
         }
+        System.out.println(ingredients.get(0));
     }
 
         public JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
