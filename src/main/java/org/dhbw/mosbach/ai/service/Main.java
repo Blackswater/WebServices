@@ -1,9 +1,11 @@
 package org.dhbw.mosbach.ai.service;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[]args){
         getData dataGetter = new getData();
-        dataGetter.getDataFromAPI("Lasagne,Spaghetti","Vodka");
-
+        ArrayList<ArrayList<ArrayList<ArrayList<String>>>> theFoodList=dataGetter.getDataFromAPI("","Vodka");
+        System.out.println();
     }
 }
