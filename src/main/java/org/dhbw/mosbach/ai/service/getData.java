@@ -54,39 +54,41 @@ public class getData {
             String apiUri = builder.toString();
             JSONObject jsonObjFromAPI = readJsonFromUrl(apiUri);
             foodJson = jsonObjFromAPI.getJSONArray(foodType);
-        } catch (IOException e) {
+        } catch (IOException | JSONException e) {
             // Fehler behandeln
             System.out.println(e);
+            return new JSONArray();
         }
         return foodJson;
     }
 
     private ArrayList<ArrayList<String>> getIngredientString(JSONArray foodJson){
         ArrayList<ArrayList<String>> ingredientsList = new ArrayList<>();
-        ArrayList<String> ingredients = new ArrayList<>();
-        ArrayList<String> measurements = new ArrayList<>();
-        ArrayList<String> instructions = new ArrayList<>();
-        instructions.add(foodJson.getJSONObject(0).get("strInstructions").toString());
-        int number=1;
-        while(true){
-            try{//Try catch notwendig, da eine JSONException ausgelöst wird wenn kein Element mehr gefunden werden kann
-                String ingredientID= "strIngredient"+number;
-                String ingredient = foodJson.getJSONObject(0).get(ingredientID).toString();
-                if(!ingredient.equals("")&&!ingredient.equals("null")) {
-                    ingredients.add(ingredient);
-                    String measurementID= "strMeasure"+number;
-                    String measurement = foodJson.getJSONObject(0).get(measurementID).toString();
-                    measurements.add(measurement);
+        if(!(foodJson.length()==0)) {
+            ArrayList<String> ingredients = new ArrayList<>();
+            ArrayList<String> measurements = new ArrayList<>();
+            ArrayList<String> instructions = new ArrayList<>();
+            instructions.add(foodJson.getJSONObject(0).get("strInstructions").toString());
+            int number = 1;
+            while (true) {
+                try {//Try catch notwendig, da eine JSONException ausgelöst wird wenn kein Element mehr gefunden werden kann
+                    String ingredientID = "strIngredient" + number;
+                    String ingredient = foodJson.getJSONObject(0).get(ingredientID).toString();
+                    if (!ingredient.equals("") && !ingredient.equals("null")) {
+                        ingredients.add(ingredient);
+                        String measurementID = "strMeasure" + number;
+                        String measurement = foodJson.getJSONObject(0).get(measurementID).toString();
+                        measurements.add(measurement);
+                    }
+                    number++;
+                } catch (JSONException e) {
+                    break;
                 }
-                number++;
             }
-            catch (JSONException e){
-                break;
-            }
+            ingredientsList.add(ingredients);
+            ingredientsList.add(measurements);
+            ingredientsList.add(instructions);
         }
-        ingredientsList.add(ingredients);
-        ingredientsList.add(measurements);
-        ingredientsList.add(instructions);
         return  ingredientsList;
     }
 
