@@ -1,4 +1,4 @@
-package org.dhbw.mosbach.ai.service;
+package org.dhbw.mosbach.ai.partyplanner;
 
 import java.util.ArrayList;
 
