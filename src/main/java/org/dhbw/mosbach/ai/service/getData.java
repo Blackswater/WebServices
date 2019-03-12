@@ -14,7 +14,7 @@ public class getData {
         String baseUriCocktail = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
         ArrayList<ArrayList<ArrayList<ArrayList<String>>>> wholeList = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<String>>> fullIngridientsFood = new ArrayList<>();
-        ArrayList<ArrayList<ArrayList<String>>> fullIngridientsDriks = new ArrayList<>();
+        ArrayList<ArrayList<ArrayList<String>>> fullIngridientsDrinks = new ArrayList<>();
         int countFood=1;
         int countDrinks=1;
         for(int i=0;i<food.length();i++){
@@ -29,18 +29,25 @@ public class getData {
         }
         String foodList[] = food.split(",",countFood);
         String drinkList[] = drinks.split(",", countDrinks);
-        if(!foodList[0].equals("")) {
-            for (String tempFood : foodList) {
+        for (String tempFood : foodList) {
+            if (!tempFood.equals("")) {
                 fullIngridientsFood.add(getIngredientString(getJSONArrayFromApi(baseUriMeal, tempFood, "meals")));
+            } else {
+                ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
+                fullIngridientsFood.add(emptyList);
             }
         }
         wholeList.add(fullIngridientsFood);
-        if(!drinkList[0].equals("")) {
-            for (String tempDrinks : drinkList) {
-                fullIngridientsDriks.add(getIngredientString(getJSONArrayFromApi(baseUriCocktail, tempDrinks, "drinks")));
+        for (String tempDrinks : drinkList) {
+            if(!tempDrinks.equals("")) {
+                fullIngridientsDrinks.add(getIngredientString(getJSONArrayFromApi(baseUriCocktail, tempDrinks, "drinks")));
+            }
+            else{
+                ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
+                fullIngridientsDrinks.add(emptyList);
             }
         }
-        wholeList.add(fullIngridientsDriks);
+        wholeList.add(fullIngridientsDrinks);
 
         return wholeList;
     }
