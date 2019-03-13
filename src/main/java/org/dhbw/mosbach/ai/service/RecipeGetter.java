@@ -19,7 +19,7 @@ public class RecipeGetter {
         String foodList[] = splitString(food);
         for (String tempFood : foodList) {
             if (!tempFood.equals("")) {
-                fullIngridientsFood.add(getIngredientString(getJSONArrayFromApi(baseUriMeal, tempFood, "meals")));
+                fullIngridientsFood.add(getIngredientString(getJSONArrayFromApi(baseUriMeal, tempFood, "meals"),"strMeal"));
             } else {
                 ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
                 fullIngridientsFood.add(emptyList);
@@ -35,7 +35,7 @@ public class RecipeGetter {
         String drinkList[] = splitString(drinks);
         for (String tempDrinks : drinkList) {
             if(!tempDrinks.equals("")) {
-                fullIngridientsDrinks.add(getIngredientString(getJSONArrayFromApi(baseUriCocktail, tempDrinks, "drinks")));
+                fullIngridientsDrinks.add(getIngredientString(getJSONArrayFromApi(baseUriCocktail, tempDrinks, "drinks"),"strDrink"));
             }
             else{
                 ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
@@ -47,46 +47,15 @@ public class RecipeGetter {
     }
 
     private String[] splitString(String unsplitString){
+        unsplitString=unsplitString.replaceAll("\\s+","%20");
         int countComma=1;
         for(int i=0;i<unsplitString.length();i++){
             if(unsplitString.charAt(i)==','){
                 countComma++;
             }
         }
-        ArrayList<String> splitString = new ArrayList<>(Arrays.asList(unsplitString.split(",", countComma)));
-        ArrayList<Integer> entriesToRemove= new ArrayList<>();
-        ArrayList<String> entriesToAdd=new ArrayList<>();
-        for(String tempString: splitString){
-            if(tempString.contains(" ")){// Space durch %20 ersetzen für die URL
-                int amountSpaces=1;
-                for(int i=0;i<tempString.length();i++){
-                    if(tempString.charAt(i)==' '){
-                        amountSpaces++;
-                    }
-                }
-                String[] tempArray = tempString.split(" ",amountSpaces);
-                StringBuilder builder = new StringBuilder();
-                for(int i=0;i<tempArray.length;i++){
-                    builder.append(tempArray[i]);
-                    if(tempArray.length-1!=i){
-                        builder.append("%");
-                        builder.append("20");
-                    }
-                }
-                entriesToRemove.add(splitString.indexOf(tempString));
-                entriesToAdd.add(builder.toString());
-            }
-        }
-        for(int i=entriesToRemove.size()-1;i>=0;i--){
-            splitString.remove((int)entriesToRemove.get(i));
-            splitString.add(entriesToAdd.get(i));
-        }
-        System.out.println();
-        String[] finishedSplit = new String[splitString.size()];
-        for(int i=0;i<splitString.size();i++){
-            finishedSplit[i]=splitString.get(i);
-        }
-        return finishedSplit;
+        String[] splitString = unsplitString.split(",", countComma);
+        return splitString;
     }
 
     private JSONArray getJSONArrayFromApi(String uri,String food,String foodType){
@@ -106,13 +75,15 @@ public class RecipeGetter {
         return foodJson;
     }
 
-    private ArrayList<ArrayList<String>> getIngredientString(JSONArray foodJson){
+    private ArrayList<ArrayList<String>> getIngredientString(JSONArray foodJson,String foodOrDrinkName){
         ArrayList<ArrayList<String>> ingredientsList = new ArrayList<>();
         if(!(foodJson.length()==0)) {
             ArrayList<String> ingredients = new ArrayList<>();
             ArrayList<String> measurements = new ArrayList<>();
             ArrayList<String> instructions = new ArrayList<>();
+            ArrayList<String> name = new ArrayList<>();
             instructions.add(foodJson.getJSONObject(0).get("strInstructions").toString());
+            name.add(foodJson.getJSONObject(0).get(foodOrDrinkName).toString());
             int number = 1;
             while (true) {
                 try {//Try catch notwendig, da eine JSONException ausgelöst wird wenn kein Element mehr gefunden werden kann
@@ -131,6 +102,7 @@ public class RecipeGetter {
             }
             ingredientsList.add(ingredients);
             ingredientsList.add(measurements);
+            ingredientsList.add(name);
             ingredientsList.add(instructions);
         }
         return  ingredientsList;
