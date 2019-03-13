@@ -1,5 +1,7 @@
 package org.dhbw.mosbach.ai.partyplanner;
 
+import org.dhbw.mosbach.ai.partyplanner.apiaccess.getData;
+
 import java.util.ArrayList;
 
 public class Main {

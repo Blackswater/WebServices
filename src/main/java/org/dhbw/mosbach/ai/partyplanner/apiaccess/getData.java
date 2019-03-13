@@ -1,4 +1,4 @@
-package org.dhbw.mosbach.ai.partyplanner;
+package org.dhbw.mosbach.ai.partyplanner.apiaccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;

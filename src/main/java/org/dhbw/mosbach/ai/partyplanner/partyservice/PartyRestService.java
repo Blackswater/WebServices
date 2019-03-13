@@ -1,37 +1,55 @@
 package org.dhbw.mosbach.ai.partyplanner.partyservice;
 
+import org.dhbw.mosbach.ai.partyplanner.model.Guest;
+import org.dhbw.mosbach.ai.partyplanner.model.Item;
 import org.dhbw.mosbach.ai.partyplanner.model.Party;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public interface PartyRestService {
+public class PartyRestService implements IPartyRestService
+{
+    @Override
+    public List<Party> getAllParties()
+    {
+        //TODO
+        return null;
+    }
 
-    @GET
-    @Path("/Party")
-    @Produces(MediaType.TEXT_XML)
-    List<Party> getAllParties();
-    
-    @GET
-    @Path("/party/{name}")
-    @Produces(MediaType.TEXT_XML)
-    Party getParty(@PathParam("name") String name);
+    @Override
+    public Party getParty(final String name)
+    {
+        return null;
+    }
 
-    @POST
-    @Consumes(MediaType.TEXT_XML)
-    void addParty(Party party);
+    @Override
+    public void addParty(final Party party)
+    {
 
-    @DELETE
-    @Path("/party/{name}")
-    Response deleteParty(@PathParam("name") String name);
+    }
 
-    @PUT
-    @Consumes(MediaType.TEXT_XML)
-    void changeParty(Party party);
+    @Override
+    public Response deleteParty(final String name)
+    {
+        return null;
+    }
 
+    @Override
+    public void changeParty(final Party party)
+    {
 
+    }
 
+    @Override
+    public List<Guest> getPartyGuests(final String name)
+    {
+        return null;
+    }
+
+    @Override
+    public List<Item> getPartyItems(final String name)
+    {
+        return null;
+    }
 
 }
