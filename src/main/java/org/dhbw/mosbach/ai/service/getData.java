@@ -9,26 +9,10 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 public class getData {
 
-    public ArrayList<ArrayList<ArrayList<ArrayList<String>>>> getDataFromAPI(String food,String drinks) {
+    public ArrayList<ArrayList<ArrayList<String>>> getDataFromAPIFood(String food) {
         String baseUriMeal = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-        String baseUriCocktail = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-        ArrayList<ArrayList<ArrayList<ArrayList<String>>>> wholeList = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<String>>> fullIngridientsFood = new ArrayList<>();
-        ArrayList<ArrayList<ArrayList<String>>> fullIngridientsDrinks = new ArrayList<>();
-        int countFood=1;
-        int countDrinks=1;
-        for(int i=0;i<food.length();i++){
-            if(food.charAt(i)==','){
-                countFood++;
-            }
-        }
-        for(int i=0;i<drinks.length();i++){
-            if(drinks.charAt(i)==','){
-                countDrinks++;
-            }
-        }
-        String foodList[] = food.split(",",countFood);
-        String drinkList[] = drinks.split(",", countDrinks);
+        String foodList[] = splitString(food);
         for (String tempFood : foodList) {
             if (!tempFood.equals("")) {
                 fullIngridientsFood.add(getIngredientString(getJSONArrayFromApi(baseUriMeal, tempFood, "meals")));
@@ -37,7 +21,14 @@ public class getData {
                 fullIngridientsFood.add(emptyList);
             }
         }
-        wholeList.add(fullIngridientsFood);
+
+        return fullIngridientsFood;
+    }
+
+    public ArrayList<ArrayList<ArrayList<String>>> getDataFromAPIDrinks(String drinks) {
+        String baseUriCocktail = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+        ArrayList<ArrayList<ArrayList<String>>> fullIngridientsDrinks = new ArrayList<>();
+        String drinkList[] = splitString(drinks);
         for (String tempDrinks : drinkList) {
             if(!tempDrinks.equals("")) {
                 fullIngridientsDrinks.add(getIngredientString(getJSONArrayFromApi(baseUriCocktail, tempDrinks, "drinks")));
@@ -47,9 +38,18 @@ public class getData {
                 fullIngridientsDrinks.add(emptyList);
             }
         }
-        wholeList.add(fullIngridientsDrinks);
 
-        return wholeList;
+        return fullIngridientsDrinks;
+    }
+
+    private String[] splitString(String unsplitString){
+        int countComma=1;
+        for(int i=0;i<unsplitString.length();i++){
+            if(unsplitString.charAt(i)==','){
+                countComma++;
+            }
+        }
+        return unsplitString.split(",", countComma);
     }
 
     private JSONArray getJSONArrayFromApi(String uri,String food,String foodType){
@@ -118,4 +118,49 @@ public class getData {
         }
         return sb.toString();
     }
+
+
+
+    /*public ArrayList<ArrayList<ArrayList<ArrayList<String>>>> getDataFromAPI(String food,String drinks) {
+        String baseUriMeal = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+        String baseUriCocktail = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+        ArrayList<ArrayList<ArrayList<ArrayList<String>>>> wholeList = new ArrayList<>();
+        ArrayList<ArrayList<ArrayList<String>>> fullIngridientsFood = new ArrayList<>();
+        ArrayList<ArrayList<ArrayList<String>>> fullIngridientsDrinks = new ArrayList<>();
+        int countFood=1;
+        int countDrinks=1;
+        for(int i=0;i<food.length();i++){
+            if(food.charAt(i)==','){
+                countFood++;
+            }
+        }
+        for(int i=0;i<drinks.length();i++){
+            if(drinks.charAt(i)==','){
+                countDrinks++;
+            }
+        }
+        String foodList[] = food.split(",",countFood);
+        String drinkList[] = drinks.split(",", countDrinks);
+        for (String tempFood : foodList) {
+            if (!tempFood.equals("")) {
+                fullIngridientsFood.add(getIngredientString(getJSONArrayFromApi(baseUriMeal, tempFood, "meals")));
+            } else {
+                ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
+                fullIngridientsFood.add(emptyList);
+            }
+        }
+        wholeList.add(fullIngridientsFood);
+        for (String tempDrinks : drinkList) {
+            if(!tempDrinks.equals("")) {
+                fullIngridientsDrinks.add(getIngredientString(getJSONArrayFromApi(baseUriCocktail, tempDrinks, "drinks")));
+            }
+            else{
+                ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
+                fullIngridientsDrinks.add(emptyList);
+            }
+        }
+        wholeList.add(fullIngridientsDrinks);
+
+        return wholeList;
+    }*/
 }
