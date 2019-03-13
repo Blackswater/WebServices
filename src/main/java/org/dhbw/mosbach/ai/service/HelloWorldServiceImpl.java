@@ -9,6 +9,6 @@ public class HelloWorldServiceImpl implements HelloWorldService
 	@Override
 	public String helloWorld()
 	{
-		return "hello world";
+		return "Hallo Oliver, wie geht es dir?";
 	}
 }
