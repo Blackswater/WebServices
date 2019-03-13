@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.dhbw.mosbach.ai</groupId>
-	<artifactId>helloworld</artifactId>
+	<artifactId>partyplanner</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Helloworld Maven Project Template</name>
+	<name>PartyPlanner</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
@@ -129,7 +129,7 @@
 
 
 	<build>
-		<finalName>helloworld</finalName>
+		<finalName>Partyplanner</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

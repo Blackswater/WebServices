@@ -9,16 +9,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public interface IPartyRestService
-{
+public interface IPartyRestService {
 
     @GET
     @Path("/Parties")
     @Produces(MediaType.TEXT_XML)
     List<Party> getAllParties();
-    
+
     @GET
-    @Path("/party/{name}")
+    @Path("/{name}")
     @Produces(MediaType.TEXT_XML)
     Party getParty(@PathParam("name") String name);
 
@@ -28,7 +27,7 @@ public interface IPartyRestService
     void addParty(Party party);
 
     @DELETE
-    @Path("/party/{name}")
+    @Path("/{name}")
     Response deleteParty(@PathParam("name") String name);
 
     @PUT
@@ -36,16 +35,17 @@ public interface IPartyRestService
     void changeParty(Party party);
 
     @GET
-    @Path("/party/{partyname}/guests")
+    @Path("/{partyname}/guests")
     @Produces(MediaType.TEXT_XML)
     List<Guest> getPartyGuests(@PathParam("partyname") String name);
 
     @GET
-    @Path("/party/{name}/items")
+    @Path("/{name}/items")
     @Produces(MediaType.TEXT_XML)
     List<Item> getPartyItems(@PathParam("name") String name);
-
-
-
+    @GET
+    @Path("/{name}/ingredients")
+    @Produces(MediaType.TEXT_XML)
+    List<Item> getPartyIngredients(@PathParam("name") String name);
 
 }

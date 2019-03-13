@@ -3,7 +3,7 @@ package org.dhbw.mosbach.ai.partyplanner.database;
 import org.dhbw.mosbach.ai.partyplanner.db.BaseDao;
 import org.dhbw.mosbach.ai.partyplanner.model.Ingredient;
 
-public class IntegrientDao extends BaseDao<Ingredient,Long,String> {
+public class IngredientDao extends BaseDao<Ingredient,Long,String> {
     @Override
     public Ingredient get(String key) {
         return null;

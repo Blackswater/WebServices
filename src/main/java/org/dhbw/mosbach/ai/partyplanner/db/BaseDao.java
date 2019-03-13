@@ -63,7 +63,6 @@ public abstract class BaseDao<E, I, K> implements Serializable, BasicDataAccess<
 	public void persist(E entity)
 	{
 		entity = checkConsistencyBeforeSave(entity);
-
 		em.persist(entity);
 	}
 
