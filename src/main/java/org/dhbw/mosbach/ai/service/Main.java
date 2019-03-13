@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[]args){
-        getData dataGetter = new getData();
-        ArrayList<ArrayList<ArrayList<String>>> theFoodList=dataGetter.getDataFromAPIFood("Lasagne,,sdfsgsd,Spaghetti");
-        ArrayList<ArrayList<ArrayList<String>>> theDrinkList=dataGetter.getDataFromAPIDrinks("Vodka");
+        RecipeGetter dataGetter = new RecipeGetter();
+        ArrayList<ArrayList<ArrayList<String>>> theFoodList=dataGetter.getDataFromAPIFood("Lasagne,Szechuan Beef,Pork Cassoulet,sdfsgsd,Spaghetti");
+        ArrayList<ArrayList<ArrayList<String>>> theDrinkList=dataGetter.getDataFromAPIDrinks("Vodka,");
+        IngridientCalculator calculator = new IngridientCalculator();
+        calculator.calculateAmounts(theFoodList);
         System.out.println();
     }
 }

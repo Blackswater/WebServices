@@ -4,10 +4,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-public class getData {
+import java.util.Arrays;
+
+public class RecipeGetter {
 
     public ArrayList<ArrayList<ArrayList<String>>> getDataFromAPIFood(String food) {
         String baseUriMeal = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -49,7 +53,40 @@ public class getData {
                 countComma++;
             }
         }
-        return unsplitString.split(",", countComma);
+        ArrayList<String> splitString = new ArrayList<>(Arrays.asList(unsplitString.split(",", countComma)));
+        ArrayList<Integer> entriesToRemove= new ArrayList<>();
+        ArrayList<String> entriesToAdd=new ArrayList<>();
+        for(String tempString: splitString){
+            if(tempString.contains(" ")){// Space durch %20 ersetzen für die URL
+                int amountSpaces=1;
+                for(int i=0;i<tempString.length();i++){
+                    if(tempString.charAt(i)==' '){
+                        amountSpaces++;
+                    }
+                }
+                String[] tempArray = tempString.split(" ",amountSpaces);
+                StringBuilder builder = new StringBuilder();
+                for(int i=0;i<tempArray.length;i++){
+                    builder.append(tempArray[i]);
+                    if(tempArray.length-1!=i){
+                        builder.append("%");
+                        builder.append("20");
+                    }
+                }
+                entriesToRemove.add(splitString.indexOf(tempString));
+                entriesToAdd.add(builder.toString());
+            }
+        }
+        for(int i=entriesToRemove.size()-1;i>=0;i--){
+            splitString.remove((int)entriesToRemove.get(i));
+            splitString.add(entriesToAdd.get(i));
+        }
+        System.out.println();
+        String[] finishedSplit = new String[splitString.size()];
+        for(int i=0;i<splitString.size();i++){
+            finishedSplit[i]=splitString.get(i);
+        }
+        return finishedSplit;
     }
 
     private JSONArray getJSONArrayFromApi(String uri,String food,String foodType){
