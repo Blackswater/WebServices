@@ -1,7 +1,6 @@
-package org.dhbw.mosbach.ai.partyplanner.database;
+package org.dhbw.mosbach.ai.partyplanner.database.dao;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import org.dhbw.mosbach.ai.partyplanner.db.BaseDao;
 import org.dhbw.mosbach.ai.partyplanner.model.Party;
 

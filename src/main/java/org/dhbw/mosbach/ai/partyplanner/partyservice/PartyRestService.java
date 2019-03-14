@@ -1,17 +1,13 @@
 package org.dhbw.mosbach.ai.partyplanner.partyservice;
 
 import com.google.common.collect.Lists;
-import org.dhbw.mosbach.ai.partyplanner.database.PartyDao;
+import org.dhbw.mosbach.ai.partyplanner.database.TempDataBase;
 import org.dhbw.mosbach.ai.partyplanner.model.Guest;
 import org.dhbw.mosbach.ai.partyplanner.model.Item;
 import org.dhbw.mosbach.ai.partyplanner.model.Party;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,15 +15,12 @@ import java.util.logging.Logger;
 public class PartyRestService implements IPartyRestService {
 
     private final Logger logger = Logger.getLogger("root");
-    @PersistenceContext
-    protected EntityManager em;
-    @Inject
-    private PartyDao partyDao;
 
+    private TempDataBase db=TempDataBase.getInstance();
     @Override
     public List<Party> getAllParties() {
 
-        final List<Party> allparties = partyDao.getAll();
+        final List<Party> allparties = db.getAllPartys();
         return Lists.newArrayList(allparties);
     }
 
