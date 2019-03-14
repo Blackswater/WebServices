@@ -1,0 +1,6 @@
+org.dhbw.mosbach.ai.partyplanner.apiaccess
+org.dhbw.mosbach.ai.partyplanner.database
+org.dhbw.mosbach.ai.partyplanner.db
+org.dhbw.mosbach.ai.partyplanner.model
+org.dhbw.mosbach.ai.partyplanner.partyservice
+org.dhbw.mosbach.ai.partyplanner.reducer

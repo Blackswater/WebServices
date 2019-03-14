@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.dhbw.mosbach.ai.partyplanner.apiaccess"},{"l":"org.dhbw.mosbach.ai.partyplanner.database"},{"l":"org.dhbw.mosbach.ai.partyplanner.db"},{"l":"org.dhbw.mosbach.ai.partyplanner.model"},{"l":"org.dhbw.mosbach.ai.partyplanner.partyservice"},{"l":"org.dhbw.mosbach.ai.partyplanner.reducer"}]
