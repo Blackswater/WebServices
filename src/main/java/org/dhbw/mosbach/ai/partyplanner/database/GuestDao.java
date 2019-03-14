@@ -6,12 +6,15 @@ import org.dhbw.mosbach.ai.partyplanner.db.BaseDao;
 import org.dhbw.mosbach.ai.partyplanner.model.Guest;
 import org.dhbw.mosbach.ai.partyplanner.model.Ingredient;
 
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //TODO
+
+@Dependent
 public class GuestDao extends BaseDao<Guest,Long,String> {
 
     private static final long serialVersionUID = -5385253294954522663L;

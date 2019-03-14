@@ -7,6 +7,8 @@ import org.dhbw.mosbach.ai.partyplanner.model.Item;
 import org.dhbw.mosbach.ai.partyplanner.model.Party;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
@@ -17,7 +19,8 @@ import java.util.logging.Logger;
 public class PartyRestService implements IPartyRestService {
 
     private final Logger logger = Logger.getLogger("root");
-
+    @PersistenceContext
+    protected EntityManager em;
     @Inject
     private PartyDao partyDao;
 
@@ -30,6 +33,7 @@ public class PartyRestService implements IPartyRestService {
 
     @Override
     public Party getParty(final String name) {
+        logger.info((String.format("Getting Party '%s'", name)));
         return partyDao.get(name);
     }
 
