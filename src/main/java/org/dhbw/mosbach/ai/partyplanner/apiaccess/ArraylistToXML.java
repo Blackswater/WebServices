@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class ArraylistToXML {
 
+    /**
+     * @
+     * @param theList ArrayList from the meals.
+     * @return JSON-Object from the given ArrayList.
+     */
     public JSONObject arraylistToJSON(ArrayList<ArrayList<ArrayList<String>>> theList){
         JSONObject theResult = new JSONObject();
         int recipeNumber=0;
