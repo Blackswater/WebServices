@@ -22,12 +22,4 @@ public interface IGuestRestService
     @PUT
     @Consumes(MediaType.TEXT_XML)
     void changeGuest(Guest guest);
-
-    @PUT
-    @Consumes(MediaType.TEXT_XML)
-    @Path("/party/{name}/guest")
-    void modifyGuestforParty(@PathParam("name") String name,Guest guest);
-
-
-
 }
