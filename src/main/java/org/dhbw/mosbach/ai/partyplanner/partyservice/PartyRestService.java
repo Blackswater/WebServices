@@ -1,8 +1,9 @@
 package org.dhbw.mosbach.ai.partyplanner.partyservice;
 
 import com.google.common.collect.Lists;
-import org.dhbw.mosbach.ai.partyplanner.database.PartyDao;
+import org.dhbw.mosbach.ai.partyplanner.database.dao.PartyDao;
 import org.dhbw.mosbach.ai.partyplanner.model.Guest;
+import org.dhbw.mosbach.ai.partyplanner.model.Ingredient;
 import org.dhbw.mosbach.ai.partyplanner.model.Item;
 import org.dhbw.mosbach.ai.partyplanner.model.Party;
 
@@ -87,10 +88,12 @@ public class PartyRestService implements IPartyRestService {
     }
 
     @Override
-    public List<Item> getPartyIngredients(String name) {
-
-
+    public Party newParty() {
         return null;
     }
 
+    @Override
+    public List<Ingredient> getPartyIngredients(String name) {
+        return null;
+    }
 }

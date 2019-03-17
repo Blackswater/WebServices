@@ -1,1 +1,1 @@
-Partyplanner is now ready on port ${thorntail.http.port}.
+Partyplaner is now ready on port ${thorntail.http.port}.
