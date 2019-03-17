@@ -14,6 +14,15 @@ public class Item {
     private String name;
     private ItemType type;
     private List<Ingredient> ingredients = Lists.newArrayList();
+    private String recipe;
+
+    public String getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
+    }
 
     @Id
     @GeneratedValue
@@ -34,6 +43,7 @@ public class Item {
     public void setName(String name) {
         this.name = name;
     }
+
 
 
     @Enumerated(EnumType.ORDINAL)
