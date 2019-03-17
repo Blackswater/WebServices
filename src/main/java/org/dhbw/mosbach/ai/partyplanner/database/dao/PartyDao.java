@@ -1,7 +1,6 @@
-package org.dhbw.mosbach.ai.partyplanner.database;
+package org.dhbw.mosbach.ai.partyplanner.database.dao;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import org.dhbw.mosbach.ai.partyplanner.db.BaseDao;
 import org.dhbw.mosbach.ai.partyplanner.model.Party;
 
@@ -21,7 +20,6 @@ public class PartyDao extends BaseDao<Party, Long, String> {
 
     @Inject
     private GuestDao guestDao;
-
     @Inject
     private ItemsDao itemsDao;
 
@@ -52,9 +50,14 @@ public class PartyDao extends BaseDao<Party, Long, String> {
 
     @Override
     @Transactional
-    public boolean add(final Party Party) {
-        logger.log(Level.INFO, "Call to addParty({0})", Party);
-        //TODO
+    public boolean add(final Party party) {
+        logger.log(Level.INFO, "Call to addParty({0})", party);
+        em.persist(party);
+        try {
+            persist(party);
+        } catch (final Exception e) {
+            return false;
+        }
         return true;
     }
 

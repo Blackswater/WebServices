@@ -1,4 +1,4 @@
-package org.dhbw.mosbach.ai.partyplanner.database;
+package org.dhbw.mosbach.ai.partyplanner.database.dao;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -68,39 +68,6 @@ public class GuestDao extends BaseDao<Guest,Long,String> {
 
         return true;
     }
-
-    /**
-     * Update ingredients, i.e., make a db lookup to see whether the ingredient
-     * already exists.
-     *
-     * @param Guest
-     *          Guest
-     */
-    private void updateItems(Guest Guest)
-    {
-
-    }
-
-    /**
-     * Updates relations between dependent manytoone objects and the given
-     * guest.
-     *
-     * @param guest
-     *          guest
-     */
-    private void updateManyToOneRelations(Guest guest)
-    {
-
-    }
-
-    @Transactional
-    public void deleteAll()
-    {
-        logger.log(Level.INFO, "Call to Guests.deleteAll()");
-        //TODO
-        em.createQuery("DELETE FROM Guests a").executeUpdate();
-    }
-
     @Override
     @Transactional
     public boolean delete(final Guest Guest)
