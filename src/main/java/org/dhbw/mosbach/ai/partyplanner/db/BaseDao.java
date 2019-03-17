@@ -32,7 +32,7 @@ public abstract class BaseDao<E, I, K> implements Serializable, BasicDataAccess<
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceContext
+	@PersistenceContext(name = "productive")
 	protected EntityManager em;
 
 	protected final Class<?> entityClass;

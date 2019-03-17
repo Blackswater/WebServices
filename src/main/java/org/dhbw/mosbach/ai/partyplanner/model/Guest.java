@@ -56,7 +56,6 @@ public class Guest {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-    // set to transient for marshalling!
     @XmlTransient
     @ManyToOne
     public Party getParty() {

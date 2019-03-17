@@ -1,4 +1,4 @@
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.*" %>
 <%@ page import="org.dhbw.mosbach.ai.partyplanner.apiaccess.RecipeGetter" %>
 <%@ page import="org.json.JSONObject" %>
 <%@ page import="org.dhbw.mosbach.ai.partyplanner.apiaccess.ArraylistToXML" %>
