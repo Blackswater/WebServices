@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class IngridientCalculator {
 
-    public ArrayList<ArrayList<ArrayList<String>>> calculateAmounts(ArrayList<ArrayList<ArrayList<String>>> ingredientList){
-        ArrayList<ArrayList<ArrayList<String>>> amountsOfIngridients = new ArrayList<>();
+    public AllIngridientList calculateAmounts(ArrayList<ArrayList<ArrayList<String>>> ingredientList){
+        AllIngridientList allIngridients = new AllIngridientList();
         ArrayList<String> alreadyMarkedIngridient=new ArrayList<>();
         ArrayList<ArrayList<String>> alreadyMarkedIngridientAmount = new ArrayList<>();
         for(int i=0;i<ingredientList.size();i++) {//Rezept Nummer
@@ -22,8 +22,10 @@ public class IngridientCalculator {
                 }
             }
         }
+        allIngridients.setAlreadyMarkedIngridient(alreadyMarkedIngridient);
+        allIngridients.setAlreadyMarkedIngridientAmount(alreadyMarkedIngridientAmount);
         System.out.println();
-        return amountsOfIngridients;
+        return allIngridients;
     }
 
 
