@@ -12,7 +12,7 @@ public class Main {
         //KANN MEHRERE ERGEBNISSE PRO ESSEN/TRINKEN GEBEN!!
         ArrayList<ArrayList<ArrayList<String>>> theDrinkList=dataGetter.getDataFromAPIDrinks("Vodka");
         IngridientCalculator calculator = new IngridientCalculator();
-        calculator.calculateAmounts(theFoodList);
+        AllIngridientList allIngreidients = calculator.calculateAmounts(theFoodList);
         ArraylistToXML theXMLMaker = new ArraylistToXML();
         JSONObject theJSON = theXMLMaker.arraylistToJSON(theFoodList);
         String xml = XML.toString(theJSON);
