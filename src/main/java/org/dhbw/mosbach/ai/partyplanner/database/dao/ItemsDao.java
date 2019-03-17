@@ -1,4 +1,4 @@
-package org.dhbw.mosbach.ai.partyplanner.database;
+package org.dhbw.mosbach.ai.partyplanner.database.dao;
 
 import org.dhbw.mosbach.ai.partyplanner.db.BaseDao;
 import org.dhbw.mosbach.ai.partyplanner.model.Item;
