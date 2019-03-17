@@ -1,0 +1,20 @@
+03-17 13:03:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "INGREDIENTS" nicht gefunden
+Table "INGREDIENTS" not found; SQL statement:
+SELECT 1 FROM ingredients [42102-187]
+03-17 13:03:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "REVIEWS" nicht gefunden
+Table "REVIEWS" not found; SQL statement:
+SELECT 1 FROM reviews [42102-187]
+03-17 13:03:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "ARTICLES" nicht gefunden
+Table "ARTICLES" not found; SQL statement:
+SELECT 1 FROM articles [42102-187]
+03-17 13:03:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "ARTICLES_INGREDIENTS" nicht gefunden
+Table "ARTICLES_INGREDIENTS" not found; SQL statement:
+SELECT 1 FROM articles_ingredients [42102-187]
+03-17 13:03:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "SEQUENCE" nicht gefunden
+Table "SEQUENCE" not found; SQL statement:
+SELECT 1 FROM SEQUENCE [42102-187]

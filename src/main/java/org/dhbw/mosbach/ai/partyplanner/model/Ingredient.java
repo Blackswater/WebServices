@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "Ingredients")
+@Table(name = "Ingredient")
 public class Ingredient
 {
     private long id;

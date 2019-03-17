@@ -8,11 +8,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 @Entity
-@Table(name = "Items")
+@Table(name = "Item")
 public class Item {
     private long id;
     private String name;
     private ItemType type;
+    private Integer amount;
     private List<Ingredient> ingredients = Lists.newArrayList();
 
     @Id
@@ -52,5 +53,13 @@ public class Item {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 }
