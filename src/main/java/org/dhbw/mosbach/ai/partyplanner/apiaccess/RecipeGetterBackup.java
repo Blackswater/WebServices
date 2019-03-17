@@ -3,15 +3,13 @@ package org.dhbw.mosbach.ai.partyplanner.apiaccess;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class RecipeGetter {
+public class RecipeGetterBackup {
 
     public ArrayList<ArrayList<ArrayList<String>>> getDataFromAPIFood(String food) {
         String baseUriMeal = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -22,12 +20,10 @@ public class RecipeGetter {
                 fullIngridientsFood.add(getIngredientString(getJSONArrayFromApi(baseUriMeal, tempFood, "meals"),"strMeal"));
             } else {
                 ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
-                ArrayList<String> tempName = new ArrayList<>();
-                tempName.add(tempFood);
-                emptyList.add(tempName);
                 fullIngridientsFood.add(emptyList);
             }
         }
+
         return fullIngridientsFood;
     }
 
@@ -41,9 +37,6 @@ public class RecipeGetter {
             }
             else{
                 ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
-                ArrayList<String> tempName = new ArrayList<>();
-                tempName.add(tempDrinks);
-                emptyList.add(tempName);
                 fullIngridientsDrinks.add(emptyList);
             }
         }
@@ -73,17 +66,16 @@ public class RecipeGetter {
             JSONObject jsonObjFromAPI = readJsonFromUrl(apiUri);
             foodJson = jsonObjFromAPI.getJSONArray(foodType);
         } catch (IOException | JSONException e) {
-            JSONObject tempJSON = new JSONObject();
-            tempJSON.put("name",food);
-            foodJson.put(tempJSON);
+            // Fehler behandeln
             System.out.println(e);
+            return new JSONArray();
         }
         return foodJson;
     }
 
     private ArrayList<ArrayList<String>> getIngredientString(JSONArray foodJson,String foodOrDrinkName){
         ArrayList<ArrayList<String>> ingredientsList = new ArrayList<>();
-        if((foodJson.getJSONObject(0).length()>1)) {
+        if(!(foodJson.length()==0)) {
             ArrayList<String> ingredients = new ArrayList<>();
             ArrayList<String> measurements = new ArrayList<>();
             ArrayList<String> instructions = new ArrayList<>();
@@ -110,11 +102,6 @@ public class RecipeGetter {
             ingredientsList.add(measurements);
             ingredientsList.add(name);
             ingredientsList.add(instructions);
-        }
-        else{
-            ArrayList<String> tempList = new ArrayList<>();
-            tempList.add(foodJson.getJSONObject(0).get("name").toString());
-            ingredientsList.add(tempList);
         }
         return  ingredientsList;
     }

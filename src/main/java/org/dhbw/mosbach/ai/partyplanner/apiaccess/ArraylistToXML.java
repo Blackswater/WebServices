@@ -15,7 +15,7 @@ public class ArraylistToXML {
         JSONObject theResult = new JSONObject();
         int recipeNumber=0;
         for(int i=0;i<theList.size();i++) {//für jedes Rezept ein JSON-Objekt
-            if(theList.get(i).size()!=0) {
+            if(theList.get(i).size()>1) {
                 JSONObject tempResult = new JSONObject();
                 tempResult.put("name",theList.get(i).get(2).get(0));
                 for (int j = 0; j < theList.get(i).get(0).size(); j++) {
