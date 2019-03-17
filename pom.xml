@@ -8,6 +8,15 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>PartyPlanner</name>
     <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.thorntail>2.3.0.Final</version.thorntail>
+        <version.cxf>3.1.9</version.cxf>
+        <version.h2>1.4.187</version.h2>
+        <version.java>1.8</version.java>
+    </properties>
+
     <repositories>
         <repository>
             <id>EclipseLink Repo</id>
@@ -246,13 +255,7 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.thorntail>2.3.0.Final</version.thorntail>
-        <version.cxf>3.1.9</version.cxf>
-        <version.h2>1.4.187</version.h2>
-        <version.java>1.8</version.java>
-    </properties>
+
 
     <profiles>
         <profile>
