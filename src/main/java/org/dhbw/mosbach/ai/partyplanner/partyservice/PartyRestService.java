@@ -19,8 +19,7 @@ import java.util.logging.Logger;
 public class PartyRestService implements IPartyRestService {
 
     private final Logger logger = Logger.getLogger("root");
-    @PersistenceContext
-    protected EntityManager em;
+
     @Inject
     private PartyDao partyDao;
 
