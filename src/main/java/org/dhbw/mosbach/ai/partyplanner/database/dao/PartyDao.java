@@ -20,7 +20,6 @@ public class PartyDao extends BaseDao<Party, Long, String> {
 
     @Inject
     private GuestDao guestDao;
-
     @Inject
     private ItemsDao itemsDao;
 
@@ -51,9 +50,14 @@ public class PartyDao extends BaseDao<Party, Long, String> {
 
     @Override
     @Transactional
-    public boolean add(final Party Party) {
-        logger.log(Level.INFO, "Call to addParty({0})", Party);
-        //TODO
+    public boolean add(final Party party) {
+        logger.log(Level.INFO, "Call to addParty({0})", party);
+        em.persist(party);
+        try {
+            persist(party);
+        } catch (final Exception e) {
+            return false;
+        }
         return true;
     }
 

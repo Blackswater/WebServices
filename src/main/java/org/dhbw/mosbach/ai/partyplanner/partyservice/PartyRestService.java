@@ -2,6 +2,7 @@ package org.dhbw.mosbach.ai.partyplanner.partyservice;
 
 import com.google.common.collect.Lists;
 import org.dhbw.mosbach.ai.partyplanner.database.TempDataBase;
+import org.dhbw.mosbach.ai.partyplanner.database.dao.PartyDao;
 import org.dhbw.mosbach.ai.partyplanner.model.Guest;
 import org.dhbw.mosbach.ai.partyplanner.model.Ingredient;
 import org.dhbw.mosbach.ai.partyplanner.model.Item;
@@ -9,6 +10,9 @@ import org.dhbw.mosbach.ai.partyplanner.model.Party;
 import org.dhbw.mosbach.ai.partyplanner.reducer.IngredientReducer;
 import org.dhbw.mosbach.ai.partyplanner.reducer.ItemListReducer;
 
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -20,6 +24,11 @@ public class PartyRestService implements IPartyRestService {
     private final Logger logger = Logger.getLogger("root");
 
     private TempDataBase db = TempDataBase.getInstance();
+    @Inject
+    private PartyDao dao;
+
+    @PersistenceContext(name = "productive")
+    protected EntityManager em;
 
     @Override
     public List<Party> getAllParties() {
@@ -36,14 +45,16 @@ public class PartyRestService implements IPartyRestService {
 
     @Override
     public Party newParty() {
-        Party newParty=new Party();
+        Party newParty = new Party();
         db.addParty(newParty);
+        dao.add(newParty);
         return newParty;
     }
 
     @Override
     public void addParty(final Party party) {
         db.addParty(party);
+
     }
 
     @Override
@@ -98,7 +109,7 @@ public class PartyRestService implements IPartyRestService {
             if (guest.getItems() != null) for (Item item : guest.getItems())
                 ingredients.addAll(item.getIngredients());
         IngredientReducer reducer = new IngredientReducer();
-        return  reducer.reduce(ingredients);
+        return reducer.reduce(ingredients);
     }
 
 }
