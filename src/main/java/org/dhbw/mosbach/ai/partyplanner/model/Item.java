@@ -13,9 +13,29 @@ public class Item {
     private long id;
     private String name;
     private ItemType type;
-    private Integer amount;
+    private Integer amount=1;
     private List<Ingredient> ingredients = Lists.newArrayList();
     private String recipe;
+
+    public Item(){
+        super();
+    }
+    public Item(String name,ItemType type,int amount){
+        this();
+        this.name = name;
+        this.type = type;
+        this.amount = amount;
+    }
+
+    public Item(Item current) {
+       this();
+        id=current.id;
+        name=current.name;
+        type=current.type;
+        ingredients=current.ingredients;
+        recipe=current.recipe;
+        amount=current.amount;
+    }
 
     public String getRecipe() {
         return recipe;

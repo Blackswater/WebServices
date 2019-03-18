@@ -14,7 +14,7 @@ public class Ingredient
 {
     private long id;
     private String name;
-    private int amount;
+    private int amount=1;
     private String measure;
 
     @Id
