@@ -11,6 +11,13 @@ public class ArraylistToXML {
      * @param theList ArrayList from the meals.
      * @return JSON-Object from the given ArrayList.
      */
+
+
+
+    //ALLINGRIDIENT ANHÄNGEN! als letztes unter "AllList"
+
+
+
     public JSONObject arraylistToJSON(ArrayList<ArrayList<ArrayList<String>>> theList){
         JSONObject theResult = new JSONObject();
         int recipeNumber=0;
