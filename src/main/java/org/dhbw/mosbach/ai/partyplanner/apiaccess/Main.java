@@ -11,7 +11,7 @@ public class Main {
         RecipeGetter dataGetter = new RecipeGetter();
         ArrayList<ArrayList<ArrayList<String>>> theFoodList=dataGetter.getDataFromAPIFood("Lasagne,Szechuan Beef,Pork Cassoulet,sdfsgsd,Spaghetti");
         //KANN MEHRERE ERGEBNISSE PRO ESSEN/TRINKEN GEBEN!!
-        ArrayList<ArrayList<ArrayList<String>>> theDrinkList=dataGetter.getDataFromAPIDrinks("Vodka");
+        ArrayList<ArrayList<ArrayList<String>>> theDrinkList=dataGetter.getDataFromAPIDrinks("");
         FoodItemCreator theItemCreator = new FoodItemCreator();
         ArrayList<Item> theItemlist = theItemCreator.createItems(theFoodList,theDrinkList);
         AllIngridientCalculator calculator = new AllIngridientCalculator();
