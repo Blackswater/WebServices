@@ -40,6 +40,13 @@
     ArrayList<String> reciepeList = new ArrayList<>();
         if (essen != null) {
             jsonA = xml.arraylistToJSON(recipe.getDataFromAPIFood(essen));
+            jsonB = xml.arraylistToJSON(recipe.getDataFromAPIDrinks(drink));
+            Set<String> keys = jsonB.keySet();
+            int recipeCount=jsonA.length();
+            for(String key: keys){
+                jsonA.put("Recipe"+recipeCount,jsonB.get(key));
+                recipeCount++;
+            }
             Set<String> theKeys1 = jsonA.keySet();
             for(int i=0;i<theKeys1.size();i++){
                 StringBuilder tempBuilder = new StringBuilder();
