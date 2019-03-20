@@ -21,13 +21,13 @@ public interface IIngredientsService {
 
 
     @POST
-    @Path("/items")
+    @Path("/itemsList")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     List<Item> getItems(DrinkFoodPOJO pojo);
 
     @POST
-    @Path("/ingredients")
+    @Path("/ingredientsList")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     List<Ingredient> getIngredients(DrinkFoodPOJO pojo);
