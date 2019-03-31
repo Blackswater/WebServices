@@ -13,6 +13,7 @@ import java.util.Arrays;
 
 public class RecipeGetter {
 
+    //Methode zum Abfragen von Informatuionen von der MealDB
     public ArrayList<ArrayList<ArrayList<String>>> getDataFromAPIFood(String food) {
         String baseUriMeal = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
         ArrayList<ArrayList<ArrayList<String>>> fullIngridientsFood = new ArrayList<>();
@@ -31,6 +32,7 @@ public class RecipeGetter {
         return fullIngridientsFood;
     }
 
+    //Methode zum Abfragen von Informatuionen von der CocktailDB
     public ArrayList<ArrayList<ArrayList<String>>> getDataFromAPIDrinks(String drinks) {
         String baseUriCocktail = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
         ArrayList<ArrayList<ArrayList<String>>> fullIngridientsDrinks = new ArrayList<>();
@@ -51,6 +53,7 @@ public class RecipeGetter {
         return fullIngridientsDrinks;
     }
 
+    //Methode zum Aufteilen des Strings zu einzelnen Gerichtnamen
     private String[] splitString(String unsplitString){
         unsplitString=unsplitString.replaceAll("\\s+","%20");
         int countComma=1;
@@ -63,6 +66,7 @@ public class RecipeGetter {
         return splitString;
     }
 
+    //Allgemeine Methode zur Abfrage von einem JSON-Objekt von einer API
     private JSONArray getJSONArrayFromApi(String uri,String food,String foodType){
         JSONArray foodJson = new JSONArray();
         try {
@@ -81,6 +85,7 @@ public class RecipeGetter {
         return foodJson;
     }
 
+    //Auslesen der Daten aus einem JSON-Array und erstellung einer Liste mit allen Infos
     private ArrayList<ArrayList<String>> getIngredientString(JSONArray foodJson,String foodOrDrinkName){
         ArrayList<ArrayList<String>> ingredientsList = new ArrayList<>();
         if((foodJson.getJSONObject(0).length()>1)) {
@@ -119,6 +124,7 @@ public class RecipeGetter {
         return  ingredientsList;
     }
 
+    //Anfrage an eine API per InputStream und erstellung eines JSON-Objekts aus den Informationen
     private JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
         try {
@@ -130,6 +136,8 @@ public class RecipeGetter {
             is.close();
         }
     }
+
+    //Auslesen der Informationen aus einem Buffered Reader
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -139,48 +147,4 @@ public class RecipeGetter {
         return sb.toString();
     }
 
-
-
-    /*public ArrayList<ArrayList<ArrayList<ArrayList<String>>>> getDataFromAPI(String food,String drinks) {
-        String baseUriMeal = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-        String baseUriCocktail = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-        ArrayList<ArrayList<ArrayList<ArrayList<String>>>> wholeList = new ArrayList<>();
-        ArrayList<ArrayList<ArrayList<String>>> fullIngridientsFood = new ArrayList<>();
-        ArrayList<ArrayList<ArrayList<String>>> fullIngridientsDrinks = new ArrayList<>();
-        int countFood=1;
-        int countDrinks=1;
-        for(int i=0;i<food.length();i++){
-            if(food.charAt(i)==','){
-                countFood++;
-            }
-        }
-        for(int i=0;i<drinks.length();i++){
-            if(drinks.charAt(i)==','){
-                countDrinks++;
-            }
-        }
-        String foodList[] = food.split(",",countFood);
-        String drinkList[] = drinks.split(",", countDrinks);
-        for (String tempFood : foodList) {
-            if (!tempFood.equals("")) {
-                fullIngridientsFood.add(getIngredientString(getJSONArrayFromApi(baseUriMeal, tempFood, "meals")));
-            } else {
-                ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
-                fullIngridientsFood.add(emptyList);
-            }
-        }
-        wholeList.add(fullIngridientsFood);
-        for (String tempDrinks : drinkList) {
-            if(!tempDrinks.equals("")) {
-                fullIngridientsDrinks.add(getIngredientString(getJSONArrayFromApi(baseUriCocktail, tempDrinks, "drinks")));
-            }
-            else{
-                ArrayList<ArrayList<String>> emptyList = new ArrayList<>();
-                fullIngridientsDrinks.add(emptyList);
-            }
-        }
-        wholeList.add(fullIngridientsDrinks);
-
-        return wholeList;
-    }*/
 }
