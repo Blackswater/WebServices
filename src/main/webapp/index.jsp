@@ -3,6 +3,7 @@
 <%@ page import="org.dhbw.mosbach.ai.partyplanner.apiaccess.ArraylistToXML" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Set" %>
+<%@ page import="java.net.URI" %>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -89,6 +90,9 @@
 
     JSONObject jsonA = null;
     JSONObject jsonB = null;
+    ArrayList<String> foodlist = new ArrayList<>();
+    ArrayList<String> drinklist = new ArrayList<>();
+
 
     RecipeGetter recipe = new RecipeGetter();
     ArraylistToXML xml = new ArraylistToXML();
