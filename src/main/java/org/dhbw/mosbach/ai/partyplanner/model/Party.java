@@ -8,7 +8,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
-
+/**@author Pascal Röcker
+ * Model for a party including name, guests and a whishlist
+ */
 @Entity
 @Table(name = "party")
 @XmlRootElement

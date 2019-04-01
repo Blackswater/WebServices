@@ -16,6 +16,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
+
+/**
+ * @author Pascal Röcker DB wont startup "driver is missing"
+ */
 @Path("/party")
 public class PartyRestService implements IPartyRestService {
 

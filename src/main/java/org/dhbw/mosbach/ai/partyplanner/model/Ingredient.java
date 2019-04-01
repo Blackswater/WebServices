@@ -7,7 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlTransient;
-
+/**@author Pascal Röcker
+ * Model for a ingredient consisting of name, amount, and measure
+ */
 @Entity
 @Table(name = "Ingredient")
 public class Ingredient

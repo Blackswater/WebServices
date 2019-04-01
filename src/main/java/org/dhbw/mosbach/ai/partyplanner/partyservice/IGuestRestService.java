@@ -9,7 +9,10 @@ import javax.ws.rs.core.Response;
 
 public interface IGuestRestService
 {
-
+    /**
+     * @author Pascal Röcker
+     * Interface for the guests
+     */
     @GET
     @Path("/guests/{code}")
     @Produces(MediaType.TEXT_XML)

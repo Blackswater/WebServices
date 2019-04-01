@@ -7,6 +7,11 @@ import org.dhbw.mosbach.ai.partyplanner.model.Party;
 import javax.ws.rs.core.Response;
 import java.util.logging.Logger;
 
+
+/**
+ * @author Pascal Röcker
+ * Not funktional Rest Service (please ignore)
+ */
 public class GuestRestService implements IGuestRestService {
 
     private TempDataBase db = TempDataBase.getInstance();

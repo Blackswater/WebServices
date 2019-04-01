@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //TODO
+/**@author Pascal Röcker
+ * first model of a guest dao, things missing
+ */
 
 @Dependent
 public class GuestDao extends BaseDao<Guest,Long,String> {

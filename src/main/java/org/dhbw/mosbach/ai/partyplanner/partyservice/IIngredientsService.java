@@ -9,8 +9,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
-
-
+/**
+ * @author Pascal Röcker
+ * Interface for the Ingredientservice
+ */
 public interface IIngredientsService {
 
     @POST

@@ -7,6 +7,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
+/**@author Pascal Röcker
+ * idea from a model of a Guest, constisting of a name, a code (invitation link),and the items he wants to bring to the party
+ */
+
 @Entity
 @Table(name = "guests")
 public class Guest {

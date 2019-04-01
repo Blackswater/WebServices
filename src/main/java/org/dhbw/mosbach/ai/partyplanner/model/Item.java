@@ -7,6 +7,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
+
+/**@author Pascal Röcker
+ * Model for a item consting of name, type, amount, ingredients and a recipe
+ * nothing found =null
+ */
 @Entity
 @Table(name = "Item")
 public class Item {

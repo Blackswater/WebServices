@@ -7,7 +7,9 @@ import org.dhbw.mosbach.ai.partyplanner.model.Ingredient;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**@author Pascal Röcker
+ * first model of a ingredient dao, things missing
+ */
 public class IngredientDao extends BaseDao<Ingredient, Long, String> {
     private final Logger logger = Logger.getLogger("root");
 

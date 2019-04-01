@@ -10,6 +10,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+
+/**
+ * @author Pascal Röcker
+ * Non-implemented PARTY-Rest service
+ */
 public interface IPartyRestService {
 
     @GET

@@ -10,7 +10,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**@author Pascal Röcker
+ * first model of a party dao, things missing
+ */
 @Dependent
 public class PartyDao extends BaseDao<Party, Long, String> {
 

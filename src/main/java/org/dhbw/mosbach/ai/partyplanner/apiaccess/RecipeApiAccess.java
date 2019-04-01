@@ -21,13 +21,15 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.List;
-
-public class Recipeapiaccess implements IRecipeapiAccess {
+/**@author Pascal Röcker
+ * Searches the api and maps it to our Item/ingredient model
+ */
+public class RecipeApiAccess implements IRecipeapiAccess {
     private String urlFood = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
     private String urlDrink = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
 
-    public Recipeapiaccess() {
+    public RecipeApiAccess() {
         // Create a trust manager that does not validate certificate chains
         final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             @Override

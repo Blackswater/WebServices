@@ -9,7 +9,9 @@ import javax.enterprise.context.Dependent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**@author Pascal Röcker
+ * first model of a itemdao, things missing
+ */
 @Dependent
 public class ItemsDao extends BaseDao<Item, Long, String> {
 
