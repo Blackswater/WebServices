@@ -195,7 +195,7 @@
             </div>
         </div>
     </div>
-    <div class="footer-copyright text-center py-3" style="background-color: #007bff">© 2018 Copyright: <a
+    <div class="footer-copyright text-center py-3" style="background-color: #007bff">&copy; 2018 Copyright: <a
             href="#">Party-Planer</a>
     </div>
 </footer>
